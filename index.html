@@ -79,7 +79,6 @@
       h1{margin:0 0 8px; font-size: clamp(24px, 3.2vw, 38px); line-height: 1.06; letter-spacing: -.03em;}
       .sub{margin:0; color: var(--muted); font-size: 14px;}
 
-      /* Video */
       .heroMedia{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding: 10px; z-index: 1;}
       .heroMedia video{
         width: 100%;
@@ -98,73 +97,68 @@
         padding: 16px;
       }
 
-      /* NEW: urgency bar (timer + social proof) */
-      .urgency{
-        display:flex;
-        gap:10px;
-        align-items:stretch;
-        margin-bottom: 12px;
-      }
-      .urgBox{
-        flex:1;
-        border-radius: 18px;
-        border: 1px solid rgba(255,255,255,.12);
-        background: rgba(0,0,0,.22);
+      .kpis{display:grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;}
+
+      /* ✅ ALTERAÇÃO PEDIDA: fundo mais bonito nos 2 KPIs */
+      .kpi{
+        position: relative;
         padding: 12px;
-        overflow:hidden;
+        border-radius: 18px;
+        border: 1px solid rgba(255,255,255,.16);
+
+        background:
+          radial-gradient(260px 140px at 18% 0%, rgba(255,47,125,.22), transparent 55%),
+          radial-gradient(260px 140px at 110% 30%, rgba(166,77,255,.20), transparent 60%),
+          linear-gradient(180deg, rgba(255,255,255,.08), rgba(0,0,0,.18));
+
+        box-shadow:
+          0 16px 36px rgba(0,0,0,.42),
+          inset 0 1px 0 rgba(255,255,255,.09);
+
+        backdrop-filter: blur(10px);
+        overflow: hidden;
       }
-      .urgTop{
+      .kpi::before{
+        content:"";
+        position:absolute;
+        inset:-1px;
+        background: linear-gradient(90deg, rgba(255,47,125,.34), rgba(166,77,255,.26), rgba(255,255,255,.08));
+        opacity: .16;
+        pointer-events:none;
+      }
+      .kpi b{
+        position:relative;
+        display:block;
+        font-size:16px;
+        font-weight: 1000;
+        letter-spacing:-.01em;
+      }
+      .kpi span{
+        position:relative;
+        display:block;
+        color: rgba(255,255,255,.74);
+        font-size:12px;
+        margin-top:4px;
+      }
+      /* ✅ fim da alteração */
+
+      /* ✅ SLIM LIVE CARD */
+      .liveSlim{
         display:flex;
         align-items:center;
         justify-content:space-between;
         gap:10px;
-        margin-bottom: 8px;
-      }
-      .urgTitle{
-        font-weight: 900;
-        letter-spacing: -.01em;
-        font-size: 13px;
-        color: rgba(255,255,255,.88);
-        display:flex;
-        align-items:center;
-        gap:8px;
-      }
-      .urgSub{
-        font-size: 12px;
-        color: rgba(255,255,255,.62);
-        margin-top: 2px;
-      }
-      .timer{
-        display:flex;
-        gap:8px;
-        align-items:center;
-      }
-      .tChip{
-        min-width: 54px;
-        text-align:center;
-        padding: 10px 8px;
-        border-radius: 14px;
+        padding: 10px 12px;
+        border-radius: 16px;
         border: 1px solid rgba(255,255,255,.12);
-        background: linear-gradient(180deg, rgba(255,47,125,.14), rgba(255,255,255,.03));
+        background: rgba(0,0,0,.22);
+        margin: 6px 0 10px;
       }
-      .tNum{font-size: 18px; font-weight: 1000; line-height: 1;}
-      .tLbl{font-size: 10px; letter-spacing:.14em; color: rgba(255,255,255,.70); margin-top: 4px;}
-      .bar{
-        height: 8px;
-        border-radius: 999px;
-        background: rgba(255,255,255,.08);
-        overflow:hidden;
-        border: 1px solid rgba(255,255,255,.10);
-      }
-      .bar > i{
-        display:block;
-        height: 100%;
-        width: 50%;
-        background: linear-gradient(90deg, rgba(255,47,125,.95), rgba(166,77,255,.85));
-        border-radius: 999px;
-      }
-      .liveBuy{
-        flex: .92;
+      .liveLeft{
+        display:flex;
+        align-items:center;
+        gap:10px;
+        min-width: 0;
       }
       .pulse{
         width: 10px;
@@ -173,25 +167,43 @@
         background: rgba(255,47,125,1);
         box-shadow: 0 0 0 rgba(255,47,125,.55);
         animation: pulse 1.3s infinite;
+        flex: 0 0 auto;
       }
       @keyframes pulse{
         0%{ box-shadow: 0 0 0 0 rgba(255,47,125,.55); }
         70%{ box-shadow: 0 0 0 12px rgba(255,47,125,0); }
         100%{ box-shadow: 0 0 0 0 rgba(255,47,125,0); }
       }
-      .liveNum{
+      .liveText{
+        display:flex;
+        flex-direction:column;
+        gap:2px;
+        min-width: 0;
+      }
+      .liveText b{
+        font-size: 13px;
         font-weight: 1000;
-        color: rgba(255,255,255,.92);
-        font-size: 14px;
+        letter-spacing:-.01em;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+      }
+      .liveText span{
+        font-size: 12px;
+        color: rgba(255,255,255,.62);
+      }
+      .liveBadge{
+        font-size: 12px;
+        font-weight: 1000;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.05);
+        white-space:nowrap;
       }
 
-      .kpis{display:grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;}
-      .kpi{padding: 12px; border-radius: 18px; border:1px solid rgba(255,255,255,.10); background: rgba(0,0,0,.20);}
-      .kpi b{display:block; font-size:16px}
-      .kpi span{display:block; color:var(--muted); font-size:12px; margin-top:4px}
-
-      /* PREVIAS (clicáveis) */
-      .teasers{display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin: 12px 0 14px;}
+      /* PREVIAS */
+      .teasers{display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin: 0 0 14px;}
       .t{
         position:relative;
         border-radius: 16px;
@@ -217,10 +229,78 @@
       .list li{display:flex; gap:10px; align-items:flex-start; padding: 10px 12px; border-radius: 16px; border: 1px solid rgba(255,255,255,.10); background: rgba(0,0,0,.22);}
       .dot{width:10px; height:10px; border-radius:50%; background: var(--hot); box-shadow: 0 0 18px rgba(255,47,125,.55); margin-top: 6px; flex: 0 0 auto;}
 
-      .offer{margin-top: 12px; border-radius: 18px; padding: 14px; border:1px solid rgba(255,47,125,.24); background: linear-gradient(180deg, rgba(255,47,125,.12), rgba(255,255,255,.03));}
+      .offer{
+        margin-top: 12px;
+        border-radius: 18px;
+        padding: 14px;
+        border:1px solid rgba(255,47,125,.24);
+        background: linear-gradient(180deg, rgba(255,47,125,.12), rgba(255,255,255,.03));
+      }
       .strike{color: rgba(255,255,255,.55); text-decoration: line-through; font-size: 13px}
-      .price{font-size: 34px; font-weight: 1000; color: var(--hot); letter-spacing:-.03em; margin: 4px 0 8px}
+      .price{font-size: 34px; font-weight: 1000; color: var(--hot); letter-spacing:-.03em; margin: 4px 0 4px}
       .fine{color: var(--muted); font-size: 12px}
+
+      /* ✅ TIMER SLIM (dentro do preço) */
+      .timerSlim{
+        margin-top: 10px;
+        padding: 10px 12px;
+        border-radius: 16px;
+        border: 1px solid rgba(255,255,255,.12);
+        background: rgba(0,0,0,.20);
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap: 10px;
+      }
+      .timerLeft{
+        display:flex;
+        flex-direction:column;
+        gap:2px;
+        min-width: 0;
+      }
+      .timerLeft b{
+        font-size: 13px;
+        font-weight: 1000;
+        letter-spacing:-.01em;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+      }
+      .timerLeft span{
+        font-size: 12px;
+        color: rgba(255,255,255,.62);
+      }
+      .timerRight{
+        display:flex;
+        align-items:center;
+        gap:8px;
+        white-space:nowrap;
+      }
+      .chip{
+        min-width: 52px;
+        text-align:center;
+        padding: 8px 8px;
+        border-radius: 14px;
+        border: 1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.05);
+      }
+      .chip .n{font-size: 16px; font-weight: 1000; line-height: 1;}
+      .chip .l{font-size: 10px; letter-spacing:.14em; color: rgba(255,255,255,.70); margin-top: 4px;}
+      .bar{
+        margin-top: 10px;
+        height: 8px;
+        border-radius: 999px;
+        background: rgba(255,255,255,.08);
+        overflow:hidden;
+        border: 1px solid rgba(255,255,255,.10);
+      }
+      .bar > i{
+        display:block;
+        height: 100%;
+        width: 50%;
+        background: linear-gradient(90deg, rgba(255,47,125,.95), rgba(166,77,255,.85));
+        border-radius: 999px;
+      }
 
       .btn{display:flex; align-items:center; justify-content:center; gap:10px; width:100%; margin-top: 12px; padding: 16px 14px; border-radius: 16px; background: var(--hot); color: #fff; font-weight: 1000; text-decoration:none; border: none; box-shadow: 0 18px 40px rgba(255,47,125,.22);}
       .btn:active{transform: translateY(1px)}
@@ -352,9 +432,6 @@
 
           <div class="heroMedia">
             <video autoplay muted loop playsinline preload="metadata">
-              <!-- =========================
-                   ASSETS (ajuste o nome do seu vídeo)
-                   ========================= -->
               <source src="./assets/hero.mp4" type="video/mp4" />
             </video>
           </div>
@@ -362,40 +439,25 @@
 
         <!-- DIREITA -->
         <aside class="card">
-
-          <!-- ✅ NOVO: timer + “comprando agora” -->
-          <div class="urgency">
-            <div class="urgBox">
-              <div class="urgTop">
-                <div>
-                  <div class="urgTitle">⏳ Oferta expira em</div>
-                  <div class="urgSub">garanta o valor promocional</div>
-                </div>
-                <div class="timer" aria-label="cronômetro">
-                  <div class="tChip"><div class="tNum" id="mm">20</div><div class="tLbl">MIN</div></div>
-                  <div class="tChip"><div class="tNum" id="ss">00</div><div class="tLbl">SEG</div></div>
-                </div>
-              </div>
-              <div class="bar" aria-hidden="true"><i id="barFill"></i></div>
-            </div>
-
-            <div class="urgBox liveBuy">
-              <div class="urgTitle"><span class="pulse" aria-hidden="true"></span> <span class="liveNum" id="liveNum">30</span> pessoas comprando agora</div>
-              <div class="urgSub">atividade em tempo real</div>
-              <div class="bar" aria-hidden="true" style="margin-top:10px;"><i id="barLive"></i></div>
-            </div>
-          </div>
-
           <div class="kpis">
             <div class="kpi"><b>+ fotos & vídeos</b><span>conteúdo privado</span></div>
             <div class="kpi"><b>Entrega na hora</b><span>após pagamento</span></div>
           </div>
 
+          <!-- ✅ SLIM “comprando agora” acima das fotos -->
+          <div class="liveSlim" aria-live="polite">
+            <div class="liveLeft">
+              <span class="pulse" aria-hidden="true"></span>
+              <div class="liveText">
+                <b><span id="liveNum">30</span> pessoas comprando agora</b>
+                <span>atividade em tempo real</span>
+              </div>
+            </div>
+            <span class="liveBadge" id="liveBadge">AO VIVO</span>
+          </div>
+
           <!-- ✅ 3 fotos clicáveis -->
           <div class="teasers" id="teasers">
-            <!-- =========================
-                 ASSETS (ajuste os nomes das suas fotos)
-                 ========================= -->
             <div class="t" data-full="./assets/p1.jpg"><img src="./assets/p1.jpg" alt="Prévia 1" loading="lazy" /></div>
             <div class="t" data-full="./assets/p2.jpg"><img src="./assets/p2.jpg" alt="Prévia 2" loading="lazy" /></div>
             <div class="t" data-full="./assets/p3.jpg"><img src="./assets/p3.jpg" alt="Prévia 3" loading="lazy" /></div>
@@ -411,6 +473,19 @@
             <div class="strike">De R$ 49,90</div>
             <div class="price">R$ 19,90</div>
             <div class="fine">Promoção por tempo limitado.</div>
+
+            <!-- ✅ TIMER AGORA embaixo do valor -->
+            <div class="timerSlim">
+              <div class="timerLeft">
+                <b>⏳ Oferta expira em</b>
+                <span>garanta o valor promocional</span>
+              </div>
+              <div class="timerRight" aria-label="cronômetro">
+                <div class="chip"><div class="n" id="mm">20</div><div class="l">MIN</div></div>
+                <div class="chip"><div class="n" id="ss">00</div><div class="l">SEG</div></div>
+              </div>
+            </div>
+            <div class="bar" aria-hidden="true"><i id="barFill"></i></div>
 
             <a class="btn" href="https://linkpriv.com/e1bf5f19-f45a-4e7b-8cd8-6f9582287e98" target="_blank" rel="noopener noreferrer">
               🔥 LIBERAR MEU ACESSO
@@ -439,7 +514,7 @@
       (function () {
         const gate = document.getElementById("gate");
         const app = document.getElementById("app");
-        const key = "packvip_age_ok_v2";
+        const key = "packvip_age_ok_v3";
 
         function showApp() {
           app.style.opacity = "1";
@@ -461,17 +536,14 @@
         });
       })();
 
-      // ===== (1) Cronômetro persuasivo =====
+      // ===== Cronômetro (agora slim dentro do preço) =====
       (function () {
         const mmEl = document.getElementById("mm");
         const ssEl = document.getElementById("ss");
         const bar = document.getElementById("barFill");
 
-        // 20 minutos por padrão (você pode mudar)
         const totalSeconds = 20 * 60;
-
-        // fixa um "end" por sessão (não reseta a cada refresh)
-        const key = "packvip_timer_end_v1";
+        const key = "packvip_timer_end_v2";
         let end = Number(localStorage.getItem(key) || "0");
         const now = Date.now();
 
@@ -490,11 +562,10 @@
           mmEl.textContent = pad(mm);
           ssEl.textContent = pad(ss);
 
-          const pct = Math.max(0.06, left / totalSeconds); // não zera totalmente pra ficar visual
+          const pct = Math.max(0.06, left / totalSeconds);
           bar.style.width = (pct * 100).toFixed(2) + "%";
 
           if (left === 0) {
-            // quando acaba, reinicia com 10-15 min (efeito “última chance”)
             const restart = (10 + Math.floor(Math.random()*6)) * 60;
             end = Date.now() + restart*1000;
             localStorage.setItem(key, String(end));
@@ -505,38 +576,32 @@
         setInterval(tick, 1000);
       })();
 
-      // ===== (2) “X pessoas comprando agora” com variação suave =====
+      // ===== “pessoas comprando agora” (slim, suave) =====
       (function () {
         const liveEl = document.getElementById("liveNum");
-        const barLive = document.getElementById("barLive");
+        const badge = document.getElementById("liveBadge");
 
-        // faixa realista
         const min = 18;
         const max = 43;
-
-        // começa em 30
         let current = 30;
 
         function clamp(v){ return Math.max(min, Math.min(max, v)); }
 
         function update(){
-          // muda de leve: -2 a +3 (mais chance de subir um pouco)
           const delta = [-2,-1,0,0,1,1,2,3][Math.floor(Math.random()*8)];
           current = clamp(current + delta);
 
           liveEl.textContent = String(current);
 
-          // barra acompanha (visual)
-          const pct = (current - min) / (max - min);
-          barLive.style.width = (8 + pct * 92).toFixed(0) + "%";
+          const tags = ["AO VIVO", "ATIVO", "AGORA"];
+          badge.textContent = tags[Math.floor(Math.random()*tags.length)];
         }
 
-        // update inicial + intervalos “humanos”
         update();
         setInterval(update, 2600);
       })();
 
-      // ===== (3) Lightbox (clicar foto -> tela cheia) =====
+      // ===== Lightbox (clicar foto -> tela cheia) =====
       (function () {
         const lb = document.getElementById("lb");
         const lbImg = document.getElementById("lbImg");
@@ -547,7 +612,6 @@
           lbImg.src = src;
           lb.classList.add("is-open");
           lb.setAttribute("aria-hidden", "false");
-          // trava scroll no mobile
           document.documentElement.style.overflow = "hidden";
           document.body.style.overflow = "hidden";
         }
@@ -567,21 +631,11 @@
         });
 
         closeBtn.addEventListener("click", close);
-        lb.addEventListener("click", (e) => {
-          // clicar fora fecha
-          if (e.target === lb) close();
-        });
+        lb.addEventListener("click", (e) => { if (e.target === lb) close(); });
+        window.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
 
-        // ESC fecha (no PC)
-        window.addEventListener("keydown", (e) => {
-          if (e.key === "Escape") close();
-        });
-
-        // swipe down simples no mobile (opcional leve)
         let startY = null;
-        lb.addEventListener("touchstart", (e) => {
-          startY = e.touches?.[0]?.clientY ?? null;
-        }, {passive:true});
+        lb.addEventListener("touchstart", (e) => { startY = e.touches?.[0]?.clientY ?? null; }, {passive:true});
         lb.addEventListener("touchend", (e) => {
           const endY = e.changedTouches?.[0]?.clientY ?? null;
           if (startY != null && endY != null && (endY - startY) > 90) close();
@@ -589,5 +643,16 @@
         }, {passive:true});
       })();
     </script>
+
+    <!-- Lightbox HTML (mantido no final pra performance) -->
+    <div class="lb" id="lb" aria-hidden="true">
+      <div class="lbWrap" role="dialog" aria-modal="true" aria-label="Prévia em tela cheia">
+        <div class="lbTop">
+          <div class="lbTag">🔍 Prévia</div>
+          <button class="lbBtn" id="lbClose" type="button">Fechar ✕</button>
+        </div>
+        <img class="lbImg" id="lbImg" alt="Prévia em tela cheia" />
+      </div>
+    </div>
   </body>
 </html>
